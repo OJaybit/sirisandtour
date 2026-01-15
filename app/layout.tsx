@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Shola Project",
+  title: "sandtour Project",
   description: "Hero section with video background",
 };
 

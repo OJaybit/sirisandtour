@@ -10,7 +10,7 @@ export default function Location() {
 }}
 
     >
-      <div className="absolute bg-transparent -top-5 -left-15 w-32 h-32 lg:w-48 lg:h-48 pointer-events-none opacity-30">
+      <div className="absolute bg-transparent -top-9 -left-17 w-32 h-32 lg:w-48 lg:h-48 pointer-events-none opacity-10">
   <img
     src="/starfish.png" 
     alt="Top left Decoration"
@@ -19,23 +19,20 @@ export default function Location() {
 </div>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-4xl px-6 lg:px-20 text-center lg:text-left z-10">
-        <h2 className="text-[42px] sm:text-[48px] lg:text-[56px] font-bold mb-8">
+      <div className="max-w-4xl px-6 lg:px-20 text-center lg:text-center z-10">
+        <h2 className="text-[42px] sm:text-[48px] lg:text-[56px] font-bold mb-10">
           WHERE WE ARE
         </h2>
 
         <p className="text-gray-100 leading-[1.7] mb-6">
-          Welcome to a sanctuary of relaxation and elegance, where every
-          detail is designed to create unforgettable experiences.
+          Based in the heart of Cairo, we operate across every major destination in Egypt. From the bustling streets of the capital to the serene shores of the Red Sea and the ancient temples of Luxor and Aswan.
         </p>
-
-        <p className="text-gray-100 leading-[1.7] mb-10">
-          Whether you seek luxurious comfort, eco-friendly living, or a
-          family-friendly escape, we offer a refined experience tailored
-          to every guest.
-        </p>
-
-         <div className="absolute bg-transparent -bottom-20 -right-4 w-20 h-182 lg:w-48 lg:h-48 pointer-events-none opacity-30">
+ <p className="text-gray-100 leading-[1.7] mb-10">
+              Whether you seek luxurious comfort, eco-friendly living, or a
+              family-friendly escape, we offer a refined experience tailored
+              to every guest.
+            </p>
+         <div className="absolute bg-transparent -bottom-20  -right-9 w-20 h-182 lg:w-60 lg:h-50 pointer-events-none opacity-15">
   <img
     src="/rebune.png" 
     alt="Top left Decoration"
