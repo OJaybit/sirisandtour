@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion"; // ✅ import easeOut
 import { useRef } from "react";
 
 const trendingItems = [
@@ -29,12 +29,13 @@ const container = {
   },
 };
 
+// ✅ Fixed: use imported easeOut instead of string
 const card = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: "easeOut" },
+    transition: { duration: 0.55, ease: easeOut },
   },
 };
 
@@ -42,7 +43,7 @@ const imageFade = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.7, ease: easeOut },
   },
 };
 
@@ -67,7 +68,7 @@ export default function Destinations() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: easeOut }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
