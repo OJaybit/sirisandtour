@@ -71,13 +71,13 @@ export default function AboutUs() {
             alt="SIRISAND TOUR"
             fill
               sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain translate-y-11 -translate-x-20"
+            className="object-contain translate-y-10 -translate-x-25"
             priority
           />
         </motion.div>
 
         {/* TEXT — STAGGERED SCROLL ANIMATION */}
-        <div className="flex items-center -ml-70 mt-35 px-6 sm:px-10 lg:px-20">
+        <div className="flex items-center -ml-80 mt-35 px-6 sm:px-10 lg:px-20">
           <motion.div
             className="max-w-xl lg:max-w-lg w-full mx-auto text-center lg:text-left items-center lg:items-start flex flex-col"
             variants={textContainer}
