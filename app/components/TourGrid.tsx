@@ -157,6 +157,7 @@ export default function TourGrid() {
         src={tour.image}
         alt={tour.city}
         fill
+          sizes="(max-width: 768px) 100vw, 50vw"
         priority={tour.id === 'hurghada'}
         loading={tour.id === 'hurghada' ? 'eager' : 'lazy'}
         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -199,7 +200,7 @@ export default function TourGrid() {
                   </Link>
                   <Link 
                     href={tour.link} 
-                    className="flex-1 bg-white hover:bg-slate-50 border-2 border-blue-600 text-blue-600 text-sm font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 text-center flex items-center justify-center gap-1 group/btn"
+                    className="flex-1 bg-white hover:bg-slate-50 border-2 border-[#0A7BBE] text-[#0A7BBE] text-sm font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 text-center flex items-center justify-center gap-1 group/btn"
                   >
                     Book Now
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />

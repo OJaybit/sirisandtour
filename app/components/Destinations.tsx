@@ -60,6 +60,7 @@ export default function Destinations() {
             src="/starfish.png"
             alt="Decoration"
             fill
+              sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain"
           />
         </div>
@@ -102,6 +103,7 @@ export default function Destinations() {
                     src={item.image}
                     alt={item.title}
                     fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </motion.div>

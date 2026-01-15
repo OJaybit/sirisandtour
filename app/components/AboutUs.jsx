@@ -70,6 +70,7 @@ export default function AboutUs() {
             src="/about-image.webp"
             alt="SIRISAND TOUR"
             fill
+              sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain translate-y-11 -translate-x-25"
             priority
           />

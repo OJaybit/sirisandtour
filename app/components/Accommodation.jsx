@@ -60,6 +60,7 @@ export default function Accommodation() {
               src="/room.webp"
               alt="Luxury accommodation"
               fill
+                sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
               priority
             />
