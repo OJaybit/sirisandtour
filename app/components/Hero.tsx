@@ -10,7 +10,7 @@ export default function Hero() {
       transition={{ duration: 0.6 }}
       className="relative w-full h-screen overflow-hidden"
     >
-      <div className="relative h-full w-full grid sm:grid-cols-[35%_65%] md:grid-cols-[40%_60%] lg:grid-cols-[35%_65%]">
+      <div className="relative h-full w-full grid sm:grid-cols-[43%_57%] md:grid-cols-[40%_60%] lg:grid-cols-[25%_75%]">
 
         {/* LEFT SIDE (desktop only) */}
         <div className="relative z-30 flex flex-col px-6 sm:px-12 pt-20 sm:pt-40 bg-white hidden sm:flex">
