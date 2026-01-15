@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { motion, easeOut } from "framer-motion"; // ✅ import easeOut
+import { motion, easeOut, type Variants } from "framer-motion";
 import { useRef } from "react";
 
 const trendingItems = [
@@ -20,7 +20,7 @@ const trendingItems = [
 ];
 
 /* STAGGER ONLY */
-const container = {
+const container: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -30,22 +30,30 @@ const container = {
 };
 
 // ✅ Fixed: use imported easeOut instead of string
-const card = {
+const card: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: easeOut },
+    transition: {
+      duration: 0.55,
+      ease: easeOut,
+    },
   },
 };
 
-const imageFade = {
+
+const imageFade: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.7, ease: easeOut },
+    transition: {
+      duration: 0.7,
+      ease: easeOut,
+    },
   },
 };
+
 
 export default function Destinations() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
