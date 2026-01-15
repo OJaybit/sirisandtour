@@ -5,11 +5,11 @@ import Image from 'next/image';
 
 export default function ContactSection() {
   return (
-    <section className="relative bg-white overflow-hidden">
+    <section className="relative lg:h-screen bg-white overflow-hidden -mt-20">
       <div className="max-w-7xl mx-auto px-6 py-24 relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         {/* ⭐ Star Shape Decoration (Top Right) */}
-        <div className="absolute top-8 right-8 w-36 h-36 opacity-20 pointer-events-none">
+        <div className="absolute top-8 -right-10 w-36 h-36 opacity-30 pointer-events-none">
           <Image
             src="/starfish.png"
             alt="Star"
@@ -27,7 +27,7 @@ export default function ContactSection() {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
           viewport={{ once: true }}
-          className="relative rounded-2xl overflow-hidden"
+          className=" rounded-2xl overflow-hidden lg:w-[600px] lg:h-[500px]"
         >
           {/* Video */}
           <video
@@ -39,11 +39,18 @@ export default function ContactSection() {
             className="w-full h-[420px] object-cover"
           />
 
-          {/* 🌊 Wave Shape Under Video */}
+           {/* Decorative bottom-left image */}
+          <div className="absolute -left-8 -mt-35 h-[300px] lg:w-[300px] lg:h-[400px] pointer-events-none opacity-30">
+            <img
+              src="/rebune.png"
+              alt="Top left Decoration"
+              className="w-full h-full object-contain"
+            />
+          </div>
           
         </motion.div>
 
-        {/* 📞 RIGHT SIDE — CONTACT CONTENT */}
+        {/* RIGHT SIDE — CONTACT CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +58,7 @@ export default function ContactSection() {
           viewport={{ once: true }}
         >
           <span className="text-[#0A7BBE] tracking-widest text-sm font-bold uppercase block mb-3">
-            Salford Resort
+            Sirisand tour
           </span>
 
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
