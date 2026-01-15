@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { motion, easeOut, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useRef } from "react";
 
 const trendingItems = [
@@ -19,47 +19,44 @@ const trendingItems = [
   { id: 12, title: "Mount Sinai Hike", image: "/images/trending/sinai.webp" },
 ];
 
-/* STAGGER ONLY */
+/* === SAME ANIMATION SYSTEM AS TourGrid === */
+
 const container: Variants = {
-  hidden: {},
-  visible: {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
     transition: {
       staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 };
 
-// ✅ Fixed: use imported easeOut instead of string
 const card: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
+  hidden: {
+    opacity: 0,
+    y: 60,
+    scale: 0.9,
+  },
+  show: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.55,
-      ease: easeOut,
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
-
-
-const imageFade: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.7,
-      ease: easeOut,
-    },
-  },
-};
-
 
 export default function Destinations() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-24 bg-white relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6 relative">
 
         {/* Decorative starfish */}
@@ -68,16 +65,16 @@ export default function Destinations() {
             src="/starfish.png"
             alt="Decoration"
             fill
-              sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain"
           />
         </div>
 
-        {/* Header — simple fade */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: easeOut }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
@@ -89,33 +86,35 @@ export default function Destinations() {
           </h2>
         </motion.div>
 
-        {/* Cards — stagger only */}
+        {/* Cards */}
         <motion.div
           variants={container}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          whileInView="show"
+          viewport={{ once: true, amount: 0.05, margin: "-50px" }}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {trendingItems.map((item) => (
               <motion.div
                 key={item.id}
                 variants={card}
-                className="bg-white border border-slate-200 shadow-sm hover:shadow-md transition"
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="group bg-white border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden rounded-xl"
               >
-                <motion.div
-                  variants={imageFade}
-                  className="relative h-[320px]"
-                >
+                {/* Image (LCP FIX APPLIED) */}
+                <div className="relative h-[320px] overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={item.id <= 3}
+                    loading={item.id <= 3 ? "eager" : "lazy"}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </motion.div>
+                </div>
 
+                {/* Title */}
                 <div className="bg-[#0A7BBE] py-4 text-center">
                   <h3 className="text-white font-semibold">
                     {item.title}
