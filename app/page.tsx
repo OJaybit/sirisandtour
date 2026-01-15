@@ -5,6 +5,7 @@ import Accommodation from "./components/Accommodation";
 import TourGrid from './components/TourGrid';
 import Destinations from "./components/Destinations";
 import Navbar from "./components/Navbar";
+import ContactSection from "./components/ContactSection";
 export default function Home() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function Home() {
           <TourGrid />
       <Accommodation />
       <Destinations />
+      <ContactSection />
     </>
   );
 }
