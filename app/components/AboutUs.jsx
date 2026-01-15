@@ -71,7 +71,7 @@ export default function AboutUs() {
             alt="SIRISAND TOUR"
             fill
               sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain translate-y-5 -translate-x-25"
+            className="object-contain translate-y-11 -translate-x-20"
             priority
           />
         </motion.div>
