@@ -20,7 +20,7 @@ export default function Hero() {
           <h1 className="text-[48px] sm:text-[72px] leading-[1.05] font-bold tracking-[-0.02em] text-[#1F4E79]">
             SIRISAND <br /> TOUR
           </h1>
-          <p className="mt-6 sm:mt-14 text-[#0A7BBE] leading-snug break-normal 
+          <p className="mt-6 lg:mt-5 sm:mt-14 text-[#0A7BBE] leading-snug break-normal
               text-base sm:text-lg md:text-xl lg:text-2xl
               max-w-full sm:max-w-[500px] md:max-w-[650px] lg:max-w-[700px]">
             Where Luxury Meets Tranquility and Every Moment Becomes a Cherished Memory
