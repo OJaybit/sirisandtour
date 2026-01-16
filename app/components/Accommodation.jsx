@@ -76,19 +76,17 @@ export default function Accommodation() {
             className="text-center -mt-10"
           >
             <motion.p variants={item} className="text-sm tracking-[0.35em] text-[#0A7BBE] mb-3">
-              Sirisandtour
-            </motion.p>
+            Sirisandtour
+          </motion.p>
 
-            <motion.h2 variants={item} className="text-3xl font-bold text-[#2C1E1E] mb-4">
-              Stay in Comfort
-            </motion.h2>
+          <motion.h2 variants={item} className="text-3xl font-bold text-[#2C1E1E] mb-4">
+            Stay in Comfort
+          </motion.h2>
 
-            <motion.p variants={item} className="text-gray-600 leading-relaxed">
-              Indulge in the ultimate relaxation with our diverse selection
-              of accommodations, designed to cater to every traveler’s needs.
-              Choose from elegant rooms, spacious suites, or private villas,
-              each thoughtfully crafted to provide the perfect retreat.
-            </motion.p>
+          <motion.p variants={item} className="text-gray-600 leading-relaxed">
+            Enjoy ultimate relaxation with our carefully selected accommodations. From elegant rooms to spacious suites and private villas, each stay is designed to be a perfect retreat for every traveler.
+          </motion.p>
+
           </motion.div>
 
           {/* IMAGE */}
@@ -118,20 +116,20 @@ export default function Accommodation() {
           >
             <motion.div variants={item} className="bg-[#0A7BBE] text-white p-6">
               <div className="mb-3">🛏️</div>
-              <h3 className="text-lg font-semibold mb-2">Deluxe Rooms</h3>
-              <p className="text-sm leading-relaxed">
-                Experience cozy sophistication with modern interiors,
-                plush bedding, and serene garden views.
-              </p>
+<h3 className="text-lg font-semibold mb-2">Deluxe Rooms</h3>
+<p className="text-sm leading-relaxed">
+  Cozy sophistication with modern interiors, plush bedding, and peaceful garden views.
+</p>
+
             </motion.div>
 
             <motion.div variants={item} className="bg-[#0A7BBE] text-white p-6">
-              <div className="mb-3">🌊</div>
-              <h3 className="text-lg font-semibold mb-2">Ocean View Suites</h3>
-              <p className="text-sm leading-relaxed">
-                Wake up to stunning panoramic views of the sea from
-                your private balcony.
-              </p>
+                    <div className="mb-3">🌊</div>
+        <h3 className="text-lg font-semibold mb-2">Ocean View Suites</h3>
+        <p className="text-sm leading-relaxed">
+          Enjoy stunning sea views from your private balcony in these elegant suites.
+        </p>
+
             </motion.div>
           </motion.div>
         </div>

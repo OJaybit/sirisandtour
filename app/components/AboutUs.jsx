@@ -96,31 +96,31 @@ export default function AboutUs() {
 
             <motion.h2
               variants={textItem}
-              className="text-[28px] sm:text-[38px] lg:text-[56px] font-bold text-[#2C1E1E] mb-2 sm:mb-4 lg:mb-6 sm:mb-10"
+              className="text-[28px] sm:text-[38px] lg:text-[56px] font-bold text-[#2C1E1E] mb-10 sm:mb-4 lg:mb-6 sm:mb-10"
             >
               ABOUT US
             </motion.h2>
 
-            <motion.p
-              variants={textItem}
-              className="text-gray-600 leading-[1.6] sm:leading-[1.7] mb-3 sm:mb-4 lg:mb-6 sm:mb-10"
-            >
-              Welcome to a sanctuary of relaxation and elegance, where every
-              detail is designed to create unforgettable experiences.
-            </motion.p>
+           <motion.div variants={textItem} className="flex flex-col gap-4">
+  <motion.p
+    variants={textItem}
+    className="text-gray-600 leading-relaxed sm:leading-[1.7] text-base sm:text-lg max-w-prose mx-auto text-center lg:text-left"
+  >
+    Welcome to Sirisand Tour, your gateway to the wonders of Egypt. From the timeless pyramids of Giza to the vibrant streets of Cairo, we craft journeys that blend adventure, culture, and luxury.
+  </motion.p>
 
-            <motion.p
-              variants={textItem}
-              className="text-gray-600 leading-[1.6] sm:leading-[1.7] mb-5 sm:mb-6 lg:mb-10 sm:mb-6"
-            >
-              Whether you seek luxurious comfort, eco-friendly living, or a
-              family-friendly escape, we offer a refined experience tailored
-              to every guest.
-            </motion.p>
+  <motion.p
+    variants={textItem}
+    className="text-gray-600 leading-relaxed sm:leading-[1.7] text-base sm:text-lg max-w-prose mx-auto text-center -mt-2 lg:text-left"
+  >
+    Whether you’re seeking historic explorations, family-friendly adventures, or bespoke luxury experiences, we design every tour to leave you with memories that last a lifetime. With personalized service, expert guides, and attention to every detail, your Egyptian adventure becomes effortless, unforgettable, and uniquely yours.
+  </motion.p>
+</motion.div>
+
 
             <motion.button
               variants={textItem}
-              className="px-7 py-3 rounded-full bg-[#0A7BBE] text-white text-sm hover:opacity-90 transition"
+              className="px-7 py-3 rounded-full bg-[#0A7BBE] text-white text-sm hover:opacity-90 mt-3 transition"
             >
               @sirisandtour
             </motion.button>

@@ -38,18 +38,14 @@ mb-3 sm:mb-7
 ">
           WHERE WE ARE
         </h2>
+<p className="text-gray-100 leading-[1.55] sm:leading-[1.65] lg:leading-[1.7] mb-4 sm:mb-6 mb-5 sm:mb-10 lg:mb-3">
+  Based in the heart of Cairo, we bring the magic of Egypt to life across every major destination. Explore the bustling streets of the capital, the serene shores of the Red Sea, and the timeless temples of Luxor and Aswan.
+</p>
 
-        <p className="text-gray-100 leading-[1.55] sm:leading-[1.65] lg:leading-[1.7]
- mb-4 sm:mb-6 mb-5 sm:mb-10 lg:mb-3">
-          Based in the heart of Cairo, we operate across every major destination in Egypt. From the bustling streets of the capital to the serene shores of the Red Sea and the ancient temples of Luxor and Aswan.
-        </p>
+<p className="text-gray-100 leading-[1.55] sm:leading-[1.65] lg:leading-[1.7] mb-4 sm:mb-6 mb-6 sm:mb-10">
+  From luxurious comfort to eco-friendly adventures and family-friendly escapes, every journey is thoughtfully curated to deliver a refined, unforgettable experience for every traveler.
+</p>
 
-        <p className="text-gray-100 leading-[1.55] sm:leading-[1.65] lg:leading-[1.7]
-mb-4 sm:mb-6 mb-6 sm:mb-10">
-          Whether you seek luxurious comfort, eco-friendly living, or a
-          family-friendly escape, we offer a refined experience tailored
-          to every guest.
-        </p>
 
         <div className="absolute bg-transparent -bottom-20 -right-9 w-20 h-182 lg:w-60 lg:h-50 pointer-events-none opacity-15">
           <img

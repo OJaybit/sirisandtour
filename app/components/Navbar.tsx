@@ -31,8 +31,21 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
   const [desktopToursOpen, setDesktopToursOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // ✅ moved inside component
 
   const desktopToursRef = useRef<HTMLDivElement>(null);
+
+  // Detect scroll to add border
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // run once on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close desktop dropdown on outside click
   useEffect(() => {
@@ -61,9 +74,13 @@ export default function Navbar() {
     <>
       {/* ================= NAVBAR ================= */}
       {!mobileMenuOpen && (
-        <header className="fixed top-0 left-0 w-full z-50 bg-white/5 backdrop-blur-sm">
-          <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
+      <header
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+    ${scrolled ? ' backdrop-blur-sm' : 'bg-transparent'}
+  `}
+>
 
+          <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
             {/* LOGO */}
             <Link href="/" className="relative z-50">
               <div className="relative w-40 h-20">
@@ -163,7 +180,7 @@ export default function Navbar() {
   overflow-y-auto
   overscroll-contain
 "
->
+          >
             {/* CLOSE BUTTON */}
             <button
               onClick={() => setMobileMenuOpen(false)}
