@@ -55,7 +55,7 @@ export default function Destinations() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 bg-white relative overflow-hidden"
+      className="py-16 lg:-mt-5 -mt-17 bg-white relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 relative">
 
@@ -79,9 +79,9 @@ export default function Destinations() {
           className="text-center mb-20"
         >
           <span className="text-[#0A7BBE] text-xs tracking-[0.3em] font-semibold uppercase block mb-3">
-            The Sirisand Collection
+          Sirisand Collection
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-2">
             Signature Journeys
           </h2>
         </motion.div>
@@ -93,7 +93,7 @@ export default function Destinations() {
           whileInView="show"
           viewport={{ once: true, amount: 0.05, margin: "-50px" }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 -mt-12 lg:-mt-5">
             {trendingItems.map((item) => (
               <motion.div
                 key={item.id}
