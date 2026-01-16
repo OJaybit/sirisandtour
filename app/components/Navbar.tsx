@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
@@ -28,173 +28,196 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [mobileToursOpen, setMobileToursOpen] = useState(false);
 
-  // **NEW**: track scroll direction to hide navbar
-  const [hide, setHide] = useState(false);
+  const [desktopToursOpen, setDesktopToursOpen] = useState(false);
+  const desktopToursRef = useRef<HTMLDivElement>(null);
+
+  const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Hide navbar on scroll down
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Basic "scrolled" for background opacity
-      setScrolled(currentScrollY > 50);
-
-      // Hide navbar when scrolling down after leaving Hero (assume hero ~600px)
-      if (currentScrollY > 600 && currentScrollY > lastScrollY) {
-        setHide(true);
-      } else {
-        setHide(false);
-      }
-
-      setLastScrollY(currentScrollY);
+    const onScroll = () => {
+      const current = window.scrollY;
+      if (current > lastScrollY && current > 10) setHidden(true);
+      else setHidden(false);
+      setLastScrollY(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, [lastScrollY]);
+
+  // Close desktop dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        desktopToursRef.current &&
+        !desktopToursRef.current.contains(e.target as Node)
+      ) {
+        setDesktopToursOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <motion.header
-      initial={false}
-      animate={{ y: hide ? -120 : 0 }} // hide by moving up
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={`fixed left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/10 backdrop-blur-md' : 'bg-transparent'
-      }`}
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="fixed top-0 left-0 w-full z-50 bg-transparent"
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
+      <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="relative z-50">
-          <div className="relative w-48 h-32 top-2 md:w-72 md:h-44 -my-6 md:-my-10">
-             <Image 
-               src="/logo.png" 
-               alt="Sirisand Logo" 
-               fill
-                 sizes="(max-width: 768px) 100vw, 50vw"
-               className="object-contain object-left"
-               priority
-             />
+          <div className="relative w-40 h-20">
+            <Image
+              src="/logo.png"
+              alt="Sirisand Logo"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </div>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <div
-              key={link.name}
-              className="relative group -top-4"
-              onMouseEnter={() => setHoveredLink(link.name)}
-              onMouseLeave={() => setHoveredLink(null)}
-            >
-              <Link
-                href={link.href}
-                className={`text-sm font-bold tracking-widest transition-colors ${
-                  scrolled ? 'text-white hover:text-[#0A7BBE]' : 'text-white hover:text-[#0A7BBE]'
-                }`}
-              >
-                {link.name}
-                {link.dropdown && <ChevronDown className="inline w-4 h-4 ml-1" />}
-              </Link>
+          {navLinks.map(link => {
+            if (!link.dropdown) {
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-bold tracking-widest text-white hover:text-[#0A7BBE]"
+                >
+                  {link.name}
+                </Link>
+              );
+            }
 
-              {/* Dropdown Menu */}
-              {link.dropdown && (
+            // TOURS (Desktop dropdown)
+            return (
+              <div key={link.name} ref={desktopToursRef} className="relative">
+                <button
+                  onClick={() => setDesktopToursOpen(prev => !prev)}
+                  className="flex items-center gap-1 text-sm font-bold tracking-widest text-white hover:text-[#0A7BBE]"
+                >
+                  TOURS
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      desktopToursOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
                 <AnimatePresence>
-                  {hoveredLink === link.name && (
+                  {desktopToursOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 15 }}
+                      initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
+                      exit={{ opacity: 0, y: 12 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden"
+                      className="absolute top-full mt-4 w-56 bg-white rounded-xl shadow-xl overflow-hidden"
                     >
-                      <div className="py-2">
-                        {link.dropdown.map((city) => (
-                          <Link
-                            key={city}
-                            href={`/tours/${city.toLowerCase().replace(/ /g, '-')}`}
-                            className="block px-6 py-3 text-sm font-medium text-gray-600 hover:bg-cyan-50 hover:text-[#0A7BBE] transition-colors"
-                          >
-                            {city}
-                          </Link>
-                        ))}
-                      </div>
+                      {link.dropdown.map(city => (
+                        <Link
+                          key={city}
+                          href={`/tours/${city.toLowerCase().replace(/ /g, '-')}`}
+                          onClick={() => setDesktopToursOpen(false)}
+                          className="block px-6 py-3 text-sm text-gray-700 hover:bg-cyan-50 hover:text-[#0A7BBE]"
+                        >
+                          {city}
+                        </Link>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </nav>
 
-        {/* Mobile Menu Toggle */}
+        {/* MOBILE HAMBURGER */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden z-50 relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 transition-colors group"
-          aria-label="Toggle menu"
+          onClick={() => setMobileMenuOpen(prev => !prev)}
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1 z-50"
         >
-          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`w-6 h-0.5 bg-white transition ${mobileMenuOpen && 'rotate-45 translate-y-1.5'}`} />
+          <span className={`w-6 h-0.5 bg-white transition ${mobileMenuOpen && 'opacity-0'}`} />
+          <span className={`w-6 h-0.5 bg-white transition ${mobileMenuOpen && '-rotate-45 -translate-y-1.5'}`} />
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* MOBILE MENU (UNCHANGED) */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-80 bg-gradient-to-br from-gray-900 to-black z-40 md:hidden overflow-y-auto"
-            >
-              <div className="pt-32 px-8 pb-8">
-                {navLinks.map((link, index) => (
-                  <motion.div 
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="mb-6"
-                  >
+          <motion.div
+            initial={{ y: '-100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="fixed inset-0 bg-[#0A7BBE] z-40 md:hidden pt-28 px-6"
+          >
+            <div className="divide-y divide-white/30">
+              {navLinks.map(link => {
+                if (!link.dropdown) {
+                  return (
                     <Link
+                      key={link.name}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block text-2xl font-bold text-white hover:text-cyan-400 transition-colors mb-3"
+                      className="block py-6 text-2xl font-semibold text-white"
                     >
                       {link.name}
                     </Link>
-                    {link.dropdown && (
-                      <div className="pl-4 mt-3 space-y-2 border-l-2 border-cyan-500/30">
-                        {link.dropdown.map(city => (
-                          <Link 
-                            key={city}
-                            href={`/tours/${city.toLowerCase().replace(/ /g, '-')}`}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block text-base text-gray-300 hover:text-cyan-400 font-medium transition-colors"
-                          >
-                            {city}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </>
+                  );
+                }
+
+                return (
+                  <div key={link.name} className="py-6">
+                    <button
+                      onClick={() => setMobileToursOpen(prev => !prev)}
+                      className="w-full flex items-center justify-between text-2xl font-semibold text-white"
+                    >
+                      TOURS
+                      <ChevronDown
+                        className={`w-6 h-6 transition-transform ${
+                          mobileToursOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {mobileToursOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden mt-4 pl-4 space-y-4"
+                        >
+                          {link.dropdown.map(city => (
+                            <Link
+                              key={city}
+                              href={`/tours/${city.toLowerCase().replace(/ /g, '-')}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block text-lg text-white/90"
+                            >
+                              {city}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.header>

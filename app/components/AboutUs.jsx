@@ -4,17 +4,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function AboutUs() {
-  // Text stagger container
   const textContainer = {
     hidden: {},
     visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
-  // Text item animation
   const textItem = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -24,7 +20,6 @@ export default function AboutUs() {
     },
   };
 
-  // Image animation (FADE ONLY)
   const imageFade = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,52 +29,57 @@ export default function AboutUs() {
   };
 
   return (
-    <section className="w-full bg-white mt-1 overflow-hidden relative">
-      {/* STARFISH IMAGE TOP-RIGHT */}
-      <div className="absolute bg-transparent -top-12 -right-17 w-32 h-32 lg:w-48 lg:h-48 pointer-events-none opacity-10">
-        <img
+    <section className="relative w-full bg-white overflow-hidden">
+      
+      {/* ⭐ STARFISH — ALWAYS VISIBLE */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:-top-12 lg:-right-16 
+                      w-24 h-24 sm:w-28 sm:h-28 lg:w-48 lg:h-48 
+                      opacity-30 pointer-events-none z-0">
+        <Image
           src="/starfish.png"
-          alt="Top left Decoration"
-          className="w-full h-full object-contain"
+          alt="Decoration"
+          fill
+          className="object-contain"
         />
       </div>
 
-      <div className="grid lg:grid-cols-[220px_460px_1fr] min-h-[600px]">
-        
-        {/* LEFT BLUE STRIP */}
-        <div className="hidden lg:flex items-center justify-center bg-[#0A7BBE]" />
+      <div className="relative grid lg:grid-cols-[220px_460px_1fr] min-h-[600px] z-10">
 
-        {/* Decorative rotated image */}
-        <div className="absolute bg-transparent rotate-90 -left-75 mt-10 h-[300px] lg:w-[700px] lg:h-[600px] pointer-events-none opacity-5 hidden lg:block">
-          <img
+        {/* LEFT BLUE STRIP (LG ONLY) */}
+        <div className="hidden lg:flex bg-[#0A7BBE]" />
+
+        {/* ROTATED DECOR (LG ONLY) */}
+        <div className="absolute hidden lg:block rotate-90 -left-72 top-32 
+                        w-[700px] h-[600px] opacity-5 pointer-events-none">
+          <Image
             src="/rebune.png"
-            alt="Top left Decoration"
-            className="w-full h-full object-contain"
+            alt="Decoration"
+            fill
+            className="object-contain"
           />
         </div>
 
-        {/* IMAGE — FADE-IN, HIDDEN ON MOBILE */}
+        {/* IMAGE (LG ONLY) */}
         <motion.div
           variants={imageFade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="relative overflow-visible -ml-3 w-[380px] hidden lg:block"
+          className="relative hidden lg:block w-[380px]"
         >
           <Image
             src="/about-image.webp"
             alt="SIRISAND TOUR"
             fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain translate-y-10 -translate-x-25"
+            className="object-contain translate-y-10 -translate-x-24"
             priority
           />
         </motion.div>
 
-        {/* TEXT — STAGGERED SCROLL ANIMATION */}
-        <div className="flex items-center -ml-80 mt-35 px-6 sm:px-10 lg:px-20">
+        {/* TEXT CONTENT */}
+        <div className="flex items-center justify-center px-6 sm:px-10 lg:px-20 py-24 lg:-ml-50 lg:py-0">
           <motion.div
-            className="max-w-xl lg:max-w-lg w-full mx-auto text-center lg:text-left items-center lg:items-start flex flex-col"
+            className="max-w-xl w-full text-center lg:text-left flex flex-col items-center lg:items-start"
             variants={textContainer}
             initial="hidden"
             whileInView="visible"
@@ -87,14 +87,14 @@ export default function AboutUs() {
           >
             <motion.p
               variants={textItem}
-              className="text-[13px] tracking-[0.35em] text-[#0A7BBE] mb-4"
+              className="text-[12px] tracking-[0.35em] text-[#0A7BBE] mb-4"
             >
               SIRISAND TOUR
             </motion.p>
 
             <motion.h2
               variants={textItem}
-              className="text-[36px] sm:text-[42px] lg:text-[56px] font-bold text-[#2C1E1E] mb-6 sm:mb-8"
+              className="text-[34px] sm:text-[42px] lg:text-[56px] font-bold text-[#2C1E1E] mb-6"
             >
               ABOUT US
             </motion.h2>
