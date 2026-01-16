@@ -69,11 +69,12 @@ export default function AboutUs() {
           className="relative hidden lg:block w-[380px]"
         >
           <Image
-            src="/about-image.webp"
-            alt="SIRISAND TOUR"
+  src="/about-image.webp"
+  priority // only if above the fold
+ alt="SIRISAND TOUR"
             fill
             className="object-contain translate-y-10 -translate-x-24"
-            priority
+      
           />
         </motion.div>
 

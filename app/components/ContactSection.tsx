@@ -69,7 +69,7 @@ export default function ContactSection() {
             className="text-slate-600 text-base sm:text-lg leading-[1.6] max-w-lg"
           >
             Have questions or need assistance? Our team is always ready to help
-            you plan the perfect stay. Reach out using any of the options below.
+            you plan the perfect tour. Reach out using any of the options below.
           </motion.p>
         </motion.div>
 
@@ -160,7 +160,7 @@ export default function ContactSection() {
             className="text-slate-600 text-lg mb-10 max-w-lg leading-[1.7]"
           >
             Have questions or need assistance? Our team is always ready to help
-            you plan the perfect stay. Reach out using any of the options below.
+            you plan the perfect tour. Reach out using any of the options below.
           </motion.p>
 
           <motion.div variants={container} className="flex flex-col gap-6">
