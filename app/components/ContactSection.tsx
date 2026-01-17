@@ -76,7 +76,7 @@ export default function ContactSection() {
         {/* Video */}
         <motion.div
           variants={stepUp}
-          className="relative h-full w-full overflow-hidden"
+          className="relative h-[680px] lg:h-full w-full overflow-hidden"
         >
           <div className="absolute -left-8 -bottom-30 h-[200px] w-[200px] opacity-50 -z-10 pointer-events-none">
             <img src="/rebune.png" alt="" className="w-full h-full object-contain" />
