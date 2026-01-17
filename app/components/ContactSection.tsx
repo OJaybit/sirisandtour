@@ -31,7 +31,7 @@ const stepUp: Variants = {
 export default function ContactSection() {
   return (
     <motion.section
-      className="relative bg-white overflow-hidden -mt-20"
+      className="relative bg-white overflow-hidden -mt-15"
       variants={container}
       initial="hidden"
       whileInView="show"
@@ -52,7 +52,7 @@ export default function ContactSection() {
         >
           <motion.span
             variants={stepUp}
-            className="text-[#0A7BBE] tracking-widest text-sm font-bold uppercase mb-2 sm:mb-3"
+            className="text-[#0A7BBE] tracking-widest text-sm font-bold uppercase -mt-6 mb-2 sm:mb-3"
           >
             Sirisand tour
           </motion.span>
@@ -76,7 +76,7 @@ export default function ContactSection() {
         {/* Video */}
         <motion.div
           variants={stepUp}
-          className="relative w-full overflow-hidden"
+          className="relative h-full w-full overflow-hidden"
         >
           <div className="absolute -left-8 -bottom-30 h-[200px] w-[200px] opacity-50 -z-10 pointer-events-none">
             <img src="/rebune.png" alt="" className="w-full h-full object-contain" />
@@ -88,7 +88,7 @@ export default function ContactSection() {
             loop
             muted
             playsInline
-            className="w-full h-[300px] object-cover"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 
@@ -135,7 +135,7 @@ export default function ContactSection() {
             loop
             muted
             playsInline
-            className="w-full h-[420px] object-cover"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 

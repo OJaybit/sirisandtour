@@ -35,7 +35,7 @@ export default function ThankYouSection() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}
-      className="w-full bg-white lg:-mt-15 py-5"
+      className="w-full bg-white lg:-mt-20 py-4  lg:-mb-3.5"
     >
       <div className="mx-auto max-w-[1440px] px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center relative">

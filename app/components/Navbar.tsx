@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const navLinks = [
   { name: 'HOME', href: '/' },
-  { name: 'ABOUT', href: '/about' },
+  { name: 'ABOUT', href: '/AboutUs' },
   {
     name: 'TOURS',
     href: '/tours',
@@ -23,7 +23,7 @@ const navLinks = [
       'Fayoum',
     ],
   },
-  { name: 'DESTINATIONS', href: '/destinations' },
+  { name: 'DESTINATION', href: '/destination' },
   { name: 'CONTACT', href: '/contact' },
 ];
 
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <div key={link.name} ref={desktopToursRef} className="relative">
                     <button
                       onClick={() => setDesktopToursOpen(prev => !prev)}
-                      className="flex items-center gap-1 text-sm font-bold tracking-widest text-gray-900 hover:text-[#0A7BBE]"
+                      className="flex items-center gap-1 text-sm font-bold tracking-widest text text-gray-900 hover:text-[#0A7BBE]"
                     >
                       TOURS
                       <ChevronDown
